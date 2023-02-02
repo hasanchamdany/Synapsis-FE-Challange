@@ -109,7 +109,7 @@ const UserTable = () => {
                         </td>
 
                         <td className="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
-                          <button onClick={() => setShowDeleteModal(true)}>
+                          <button onClick={() => onClickDelete(datas)}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="w-6 h-6 text-red-600 hover:text-red-800"

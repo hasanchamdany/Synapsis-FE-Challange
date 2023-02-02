@@ -8,7 +8,7 @@ import SuccessToast from "../Toast/SuccessToast";
 const token = process.env.NEXT_PUBLIC_TOKEN;
 
 const AddUserModal = (props) => {
-  //   console.log(token);
+  //   console.log("ini isi add modal");
   const [inputs, setInputs] = useState({});
   const { state, setState } = props;
   //   console.log(state);
