@@ -11,7 +11,6 @@ const AddUserModal = (props) => {
   //   console.log(token);
   const [inputs, setInputs] = useState({});
   const { state, setState } = props;
-  const [showToast, setShowToast] = useState(false);
   //   console.log(state);
   const handleChange = (event) => {
     const name = event.target.name;
@@ -84,14 +83,14 @@ const AddUserModal = (props) => {
                       <div className="flex justify-between">
                         <button
                           type="submit"
-                          className="flex   mx-1 mt-6 px-4 py-1 w-fit bg-red-700 text-white rounded-[10px]"
+                          className="flex outline outline-2 outline-red-700  mx-1 mt-6 px-4 py-1 w-fit bg-red-700 text-white rounded-[10px]"
                           onClick={() => setState(false)}
                         >
                           Close
                         </button>
                         <button
                           type="submit"
-                          className="flex  bg-green-600 mx-1 mt-6 px-2 py-1 w-fit bg-blue-dark text-white rounded-[10px]"
+                          className="flex outline outline-2 outline-green-700 bg-green-600 mx-1 mt-6 px-2 py-1 w-fit bg-blue-dark text-white rounded-[10px]"
                           onClick={() => {
                             handleSubmit;
                           }}

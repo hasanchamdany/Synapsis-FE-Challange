@@ -3,8 +3,6 @@ import DefaultLayout from "@/components/DefaultLayout/DefaultLayout";
 import UserTable from "@/components/Table/UserTable";
 import AddUserModal from "@/components/Modal/AddUserModal";
 
-import SuccessToast from "../components/Toast/SuccessToast.jsx";
-
 const User_Dashboard = () => {
   const [showAddModal, setShowAddModal] = useState(false);
 
