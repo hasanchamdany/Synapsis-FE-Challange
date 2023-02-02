@@ -5,7 +5,10 @@ import { Toaster, ToastIcon, toast, resolveValue } from "react-hot-toast";
 
 import SuccessToast from "../Toast/SuccessToast";
 
+const token = process.env.NEXT_PUBLIC_TOKEN;
+
 const AddUserModal = (props) => {
+  //   console.log(token);
   const [inputs, setInputs] = useState({});
   const { state, setState } = props;
   const [showToast, setShowToast] = useState(false);
@@ -18,18 +21,15 @@ const AddUserModal = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // axios
-    //   .post("https://gorest.co.in/public/v2/users", inputs, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then(function (response) {
-    //     setAlert({ open: true, vertical: "bottom", horizontal: "right" });
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    axios
+      .post("https://gorest.co.in/public/v2/users", inputs, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(toast.success("Success add Data"))
+      .catch(function (error) {
+        console.log(error);
+      });
     console.log(inputs);
-    toast.success("Success add Data");
   };
   return (
     <>
