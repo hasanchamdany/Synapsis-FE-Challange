@@ -21,11 +21,11 @@ const token = process.env.NEXT_PUBLIC_TOKEN;
 
 export default function Home() {
   // console.log(token)
-  const { data, error, isLoading } = useSWR(
-    "https://gorest.co.in/public/v2/users",
-    fetcher
-  );
-  console.log(data);
+  // const { data, error, isLoading } = useSWR(
+  //   "https://gorest.co.in/public/v2/users",
+  //   fetcher
+  // );
+  // console.log(data);
   // fetcher
   return (
     <>
