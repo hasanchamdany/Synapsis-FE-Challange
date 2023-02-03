@@ -3,6 +3,7 @@ import DefaultLayout from "@/components/DefaultLayout/DefaultLayout";
 import PostCard from "@/components/Card/PostCard";
 
 import useSWR from "swr";
+import axios from "axios";
 import { fetcher } from "./../hooks/fetcher";
 
 const Post_List = () => {
@@ -10,32 +11,25 @@ const Post_List = () => {
     "https://gorest.co.in/public/v2/posts",
     fetcher
   );
+
   console.log(data);
   return (
     <DefaultLayout>
       <div className="w-full min-h-screen bg-gradient-to-b from-purple-500 to-pink-500">
         <div className="flex justify-center pt-40">
           <div className="block">
-            <PostCard
-              title="test"
-              user="hasan"
-              body="lorem ipsum asdoliahdwoajsnda ioauisdh aousdhn n oaisdj oiasjd   aosidja sdoaisdj  iasdjawd iasdj "
-            />
-            <PostCard
-              title="test"
-              user="hasan"
-              body="lorem ipsum asdoliahdwoajsnda ioauisdh aousdhn n oaisdj oiasjd   aosidja sdoaisdj  iasdjawd iasdj "
-            />
-            <PostCard
-              title="test"
-              user="hasan"
-              body="lorem ipsum asdoliahdwoajsnda ioauisdh aousdhn n oaisdj oiasjd   aosidja sdoaisdj  iasdjawd iasdj "
-            />
-            <PostCard
-              title="test"
-              user="hasan"
-              body="lorem ipsum asdoliahdwoajsnda ioauisdh aousdhn n oaisdj oiasjd   aosidja sdoaisdj  iasdjawd iasdj "
-            />
+            {data?.map((post) => {
+              // console.log(post);
+              return (
+                <PostCard
+                  key={post.id}
+                  id={post.id}
+                  title={post.title}
+                  user={post.user_id}
+                  body={post.body}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
