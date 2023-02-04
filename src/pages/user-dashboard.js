@@ -18,8 +18,8 @@ const User_Dashboard = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("ini isi input item");
-    console.log(inputs.search);
+    // console.log("ini isi input item");
+    // console.log(inputs.search);
   };
 
   return (

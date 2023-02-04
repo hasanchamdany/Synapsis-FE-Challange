@@ -8,8 +8,6 @@ import DeleteUserModal from "../Modal/DeleteUserModal";
 
 const UserTable = (props) => {
   const search = props.search;
-  console.log("ini isi props search table");
-  console.log(search);
 
   //   const datas = [];
   const { data, error, isLoading } = useSWR(
@@ -70,11 +68,8 @@ const UserTable = (props) => {
                   </tr>
                 </thead>
 
-                {console.log("ini isi search")}
-                {console.log(search)}
                 {search ? (
                   <tbody className="bg-white">
-                    {console.log("ini isi dari search")}
                     {data
                       //   ?.filter((filtered) => console.log(filtered))
                       .map((datas) => {
@@ -149,14 +144,12 @@ const UserTable = (props) => {
                         } else {
                           return null;
                         }
-                        console.log(datas);
-                        console.log("ini dari datas");
                       })}
                   </tbody>
                 ) : (
                   <tbody className="bg-white">
                     {data?.map((datas) => {
-                      console.log(datas);
+                      //   console.log(datas);
                       return (
                         <tr key={datas.id}>
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
