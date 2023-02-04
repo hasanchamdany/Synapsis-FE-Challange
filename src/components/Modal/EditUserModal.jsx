@@ -9,7 +9,12 @@ const token = process.env.NEXT_PUBLIC_TOKEN;
 
 const EditUserModal = (props) => {
   const { state, setState } = props;
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    name: props.data.name,
+    email: props.data.email,
+    gender: props.data.gender,
+    status: props.data.status,
+  });
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -25,7 +30,7 @@ const EditUserModal = (props) => {
       .put("https://gorest.co.in/public/v2/users/" + props.data.id, inputs, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then(toast.success("Success add Data"))
+      .then(toast.success("Success add Data"), setState(false))
       .catch(function (error) {
         console.log(error);
       });

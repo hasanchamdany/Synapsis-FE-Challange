@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Transition } from "@headlessui/react";
+import { Toaster, ToastIcon, toast, resolveValue } from "react-hot-toast";
+
+import SuccessToast from "../Toast/SuccessToast";
 
 import useSWR from "swr";
 import { fetcher } from "../../hooks/fetcher";
@@ -8,15 +12,20 @@ import DeleteUserModal from "../Modal/DeleteUserModal";
 import Loading from "../Loading/Loading";
 
 const UserTable = (props) => {
-  const search = props.search;
+  let search = props.search;
 
   const { data, error, isLoading } = useSWR(
-    "https://gorest.co.in/public/v2/users",
+    "https://gorest.co.in/public/v2/users?page=1&per_page=15",
     fetcher
   );
 
+  //   const [value, setValue] = useState(data);
+  //   console.log("ini isi value");
+  //   console.log(value);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const [showToast, setShowToast] = useState(false);
 
   const [passData, setPassData] = useState();
   const onClickEdit = (data) => {
@@ -29,12 +38,28 @@ const UserTable = (props) => {
     setShowDeleteModal(true);
     setPassData(data);
   };
+
+  const [users, setUsers] = useState();
+  useEffect(() => {
+    setUsers(data);
+  }, [data]);
+
+  //   useEffect(() => {
+  //     console.log(showToast);
+  //     if (showToast) {
+  //       return toast.success("Success delete Data");
+  //     } else {
+  //       return;
+  //     }
+  //   }, []);
+
   //   console.log(data);
 
   //   const res = data.filter((x) => x.some((y) => y.name === search));
 
   return (
     <>
+      {/* {console.log(value)} */}
       <div className="container max-w-7xl mx-auto ">
         <div className="flex flex-col">
           <div className="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -69,10 +94,10 @@ const UserTable = (props) => {
 
                 {search ? (
                   <tbody className="bg-white">
-                    {data
+                    {users
                       //   ?.filter((filtered) => console.log(filtered))
                       .map((datas) => {
-                        if (datas.name === search) {
+                        if (datas.name.toLowerCase() === search.toLowerCase()) {
                           return (
                             <tr key={datas.id}>
                               <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -147,7 +172,7 @@ const UserTable = (props) => {
                   </tbody>
                 ) : (
                   <tbody className="bg-white">
-                    {data?.map((datas) => {
+                    {users?.map((datas) => {
                       //   console.log(datas);
                       return (
                         <tr key={datas.id}>
@@ -211,6 +236,7 @@ const UserTable = (props) => {
                                 />
                               </svg>
                             </button>
+                            <SuccessToast />
                           </td>
                         </tr>
                       );

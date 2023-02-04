@@ -18,7 +18,7 @@ const DeleteUserModal = (props) => {
       .delete("https://gorest.co.in/public/v2/users/" + props.data.id, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then(toast.success("Success delete Data"))
+      .then(toast.success("Success delete Data"), setState(false))
       .catch(function (error) {
         console.log(error);
       });
