@@ -8,12 +8,18 @@ import SearchIcon from "../../public/images/icons/icons8-search-49.png";
 
 const User_Dashboard = () => {
   const [showAddModal, setShowAddModal] = useState(false);
-  const [input, setInput] = useState("");
+  const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("ini isi input item");
+    console.log(inputs.search);
   };
 
   return (
@@ -26,17 +32,24 @@ const User_Dashboard = () => {
           </h1>
           <div className="container flex justify-between pt-4">
             <div className="ml-4 rounded-xl">
-              <input
-                type="text"
-                name="search"
-                placeholder="Search User"
-                value={input.item || ""}
-                onChange={handleChange}
-                className="px-4 py-2 rounded-xl hover:outline hover:outline-2 hover:outline-yellow-500"
-              />
-              <button className="translate-y-2 ml-2 px-2 py-2 bg-yellow-500 rounded-3xl w-[50px] h-[50px]">
-                <Image alt="search" src={SearchIcon} width={45} height={45} />
-              </button>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Search User"
+                  value={inputs.search || ""}
+                  onChange={handleChange}
+                  className="px-4 py-2 rounded-xl hover:outline hover:outline-2 hover:outline-yellow-500"
+                />
+                <button
+                  className="translate-y-2 ml-2 px-2 py-2 bg-yellow-500 rounded-3xl w-[50px] h-[50px]"
+                  onClick={() => {
+                    handleSubmit;
+                  }}
+                >
+                  <Image alt="search" src={SearchIcon} width={30} height={30} />
+                </button>
+              </form>
             </div>
             <button
               className="px-4 py-2 rounded-xl bg-green-600 text-white hover:bg-green-100 hover:text-black"
@@ -48,7 +61,7 @@ const User_Dashboard = () => {
         </div>
         <AddUserModal state={showAddModal} setState={setShowAddModal} />
 
-        <UserTable />
+        <UserTable search={inputs.search} />
       </div>
     </DefaultLayout>
   );

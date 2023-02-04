@@ -28,7 +28,7 @@ const AddUserModal = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-    console.log(inputs);
+    // console.log(inputs);
   };
   return (
     <>
