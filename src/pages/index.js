@@ -10,7 +10,7 @@ import useSWR from "swr";
 
 import { fetcher } from "../hooks/fetcher";
 
-import HomePageBanner from "public/Images/home-gorest.png";
+import HomePageBanner from "../../public/images/home-gorest.png";
 
 const inter = Inter({ subsets: ["latin"] });
 const token = process.env.NEXT_PUBLIC_TOKEN;

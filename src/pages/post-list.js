@@ -17,7 +17,11 @@ const Post_List = () => {
   return (
     <DefaultLayout>
       <div className="w-full min-h-screen bg-gradient-to-b from-purple-500 to-pink-500">
-        <div className="flex justify-center pt-40">
+        <h1 className="flex justify-center pt-40 text-4xl font-bold text-white decoration-gray-400">
+          {" "}
+          Post List
+        </h1>
+        <div className="flex justify-center pt-8">
           <Loading when={isLoading} text="getting your posts..." />
           <div className="block">
             {data?.map((post) => {
