@@ -1,6 +1,7 @@
 import React from "react";
 import DefaultLayout from "@/components/DefaultLayout/DefaultLayout";
 import PostCard from "@/components/Card/PostCard";
+import Loading from "@/components/Loading/Loading";
 
 import useSWR from "swr";
 import axios from "axios";
@@ -17,6 +18,7 @@ const Post_List = () => {
     <DefaultLayout>
       <div className="w-full min-h-screen bg-gradient-to-b from-purple-500 to-pink-500">
         <div className="flex justify-center pt-40">
+          <Loading when={isLoading} text="getting your posts..." />
           <div className="block">
             {data?.map((post) => {
               // console.log(post);

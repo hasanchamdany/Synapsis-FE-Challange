@@ -5,18 +5,16 @@ import { fetcher } from "../../hooks/fetcher";
 
 import EditUserModal from "../Modal/EditUserModal";
 import DeleteUserModal from "../Modal/DeleteUserModal";
+import Loading from "../Loading/Loading";
 
 const UserTable = (props) => {
   const search = props.search;
 
-  //   const datas = [];
   const { data, error, isLoading } = useSWR(
     "https://gorest.co.in/public/v2/users",
     fetcher
   );
-  //   const res = data.filter((x) => x.name === search);
-  //   console.log("ini isi filter data");
-  //   console.log(res);
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -41,6 +39,7 @@ const UserTable = (props) => {
         <div className="flex flex-col">
           <div className="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+              <Loading when={isLoading} text="getting your datas..." />
               <table className="min-w-full">
                 <thead>
                   <tr>

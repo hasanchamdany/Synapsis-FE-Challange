@@ -30,8 +30,8 @@ const User_Dashboard = () => {
             {" "}
             User Dashboard
           </h1>
-          <div className="container flex justify-between pt-4">
-            <div className="ml-4 rounded-xl">
+          <div className="container  max-w-7xl flex justify-between pt-4 mx-auto">
+            <div className=" ml-4 rounded-xl">
               <form onSubmit={handleSubmit}>
                 <input
                   type="text"
@@ -41,14 +41,6 @@ const User_Dashboard = () => {
                   onChange={handleChange}
                   className="px-4 py-2 rounded-xl hover:outline hover:outline-2 hover:outline-yellow-500"
                 />
-                <button
-                  className="translate-y-2 ml-2 px-2 py-2 bg-yellow-500 rounded-3xl w-[50px] h-[50px]"
-                  onClick={() => {
-                    handleSubmit;
-                  }}
-                >
-                  <Image alt="search" src={SearchIcon} width={30} height={30} />
-                </button>
               </form>
             </div>
             <button
