@@ -1,20 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Transition } from "@headlessui/react";
 import { Toaster, ToastIcon, toast, resolveValue } from "react-hot-toast";
-
+import { useRouter } from "next/router";
 import SuccessToast from "../Toast/SuccessToast";
 
 const token = process.env.NEXT_PUBLIC_TOKEN;
 
 const EditUserModal = (props) => {
   const { state, setState } = props;
-  const [inputs, setInputs] = useState({
-    name: props.data.name,
-    email: props.data.email,
-    gender: props.data.gender,
-    status: props.data.status,
-  });
+  const router = useRouter();
+  //   console.log("ini props edit modal");
+  //   console.log(props);
+
+  const [inputs, setInputs] = useState({});
+
+  useEffect(() => {
+    // console.log("ini props data di useEffect ");
+    // console.log(props.data);
+    if (props.data === undefined) {
+      console.log("user id undefined");
+    } else {
+      try {
+        axios
+          .get("https://gorest.co.in/public/v2/users/" + props.data.id, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then(function (response) {
+            setInputs({
+              name: response.data.name,
+              email: response.data.email,
+              gender: response.data.gender,
+              status: response.data.status,
+            });
+            // console.log(inputs);
+            // console.log("ini input dari setelah useeffect");
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, [props.data]);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -30,7 +56,11 @@ const EditUserModal = (props) => {
       .put("https://gorest.co.in/public/v2/users/" + props.data.id, inputs, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then(toast.success("Success add Data"), setState(false))
+      .then(
+        toast.success("Success add Data"),
+        setState(false),
+        router.push("/user-dashboard")
+      )
       .catch(function (error) {
         console.log(error);
       });
@@ -55,6 +85,7 @@ const EditUserModal = (props) => {
                         placeholder="Name"
                         type="text"
                         value={inputs.name || ""}
+                        defaultValue={props.data.name}
                         onChange={handleChange}
                         className=" block outline outline-2 outline-blue-dark mx-1 mt-4 px-2 py-1 w-[232px] rounded-[10px] text-black"
                       />
@@ -65,6 +96,7 @@ const EditUserModal = (props) => {
                         placeholder="Email"
                         type="text"
                         value={inputs.email || ""}
+                        defaultValue={props.data.email}
                         onChange={handleChange}
                         className=" block outline outline-2 outline-blue-dark mx-1 mt-4 px-2 py-1 w-[232px] rounded-[10px] text-black"
                       />
@@ -75,6 +107,7 @@ const EditUserModal = (props) => {
                         placeholder="Gender"
                         type="text"
                         value={inputs.gender || ""}
+                        defaultValue={props.data.gender}
                         onChange={handleChange}
                         className=" block outline outline-2 outline-blue-dark mx-1 mt-4 px-2 py-1 w-[232px] rounded-[10px] text-black"
                       />
@@ -85,6 +118,7 @@ const EditUserModal = (props) => {
                         placeholder="Status"
                         type="text"
                         value={inputs.status || ""}
+                        defaultValue={props.data.status}
                         onChange={handleChange}
                         className=" block outline outline-2 outline-blue-dark mx-1 mt-4 px-2 py-1 w-[232px] rounded-[10px] text-black"
                       />

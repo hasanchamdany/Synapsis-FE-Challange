@@ -39,19 +39,21 @@ const UserTable = (props) => {
     setPassData(data);
   };
 
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState(data);
   useEffect(() => {
     setUsers(data);
+    // console.log("ini users");
+    // console.log(users);
   }, [data]);
 
-  //   useEffect(() => {
-  //     console.log(showToast);
-  //     if (showToast) {
-  //       return toast.success("Success delete Data");
-  //     } else {
-  //       return;
-  //     }
-  //   }, []);
+  // useEffect(() => {
+  //   console.log(showToast);
+  //   if (showToast) {
+  //     return toast.success("Success delete Data");
+  //   } else {
+  //     return;
+  //   }
+  // }, []);
 
   //   console.log(data);
 
@@ -59,7 +61,8 @@ const UserTable = (props) => {
 
   return (
     <>
-      {/* {console.log(value)} */}
+      {console.log("ini users")}
+      {console.log(users)}
       <div className="container max-w-7xl mx-auto ">
         <div className="flex flex-col">
           <div className="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
