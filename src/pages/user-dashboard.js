@@ -3,12 +3,14 @@ import DefaultLayout from "@/components/DefaultLayout/DefaultLayout";
 import UserTable from "@/components/Table/UserTable";
 import AddUserModal from "@/components/Modal/AddUserModal";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import SearchIcon from "../../public/images/icons/icons8-search-49.png";
 
 const User_Dashboard = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [inputs, setInputs] = useState({});
+  const router = useRouter();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -43,12 +45,14 @@ const User_Dashboard = () => {
                 />
               </form>
             </div>
-            <button
-              className="px-4 py-2 rounded-xl bg-green-600 text-white hover:bg-green-100 hover:text-black"
-              onClick={() => setShowAddModal(true)}
-            >
-              Create User
-            </button>
+            <div className="">
+              <button
+                className="px-4 py-2 rounded-xl bg-green-600 text-white hover:bg-green-100 hover:text-black"
+                onClick={() => setShowAddModal(true)}
+              >
+                Create User
+              </button>
+            </div>
           </div>
         </div>
         <AddUserModal state={showAddModal} setState={setShowAddModal} />

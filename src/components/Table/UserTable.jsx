@@ -16,7 +16,8 @@ const UserTable = (props) => {
 
   const { data, error, isLoading } = useSWR(
     "https://gorest.co.in/public/v2/users?page=1&per_page=15",
-    fetcher
+    fetcher,
+    { refreshInterval: 1000 }
   );
 
   //   const [value, setValue] = useState(data);
