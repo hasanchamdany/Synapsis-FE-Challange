@@ -36,6 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 📁 Folder Structure
 
+```
 📦synapsis-frontend
 ┣ 📂.git
 ┣ 📂public
@@ -89,6 +90,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ┣ 📜postcss.config.js
 ┣ 📜README.md
 ┗ 📜tailwind.config.js
+```
 
 ## 🌐 Deploy on Vercel
 
